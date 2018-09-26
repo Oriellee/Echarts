@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable=no">
+    <title>横向圆角绿色柱状图</title>
+    <script src="../echarts.js"></script>
+    <style>
+    #box {
+        width: 600px;
+        height: 400px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script type="text/javascript">
+    var myChart = echarts.init(document.getElementById("box"));
+
+    var option = {
+        color: ['#3398DB'],
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'line',
+                lineStyle: {
+                    opacity: 0
+                }
+            },
+            formatter: function(prams) {
+                return prams[0].name + ' : ' + prams[0].data
+            }
+        },
+        legend: {
+            data: ['直接访问', '背景'],
+            show: false
+        },
+        grid: {
+            top: '5%',
+            left: '3%',
+            right: '3%',
+            bottom: '3%',
+            containLabel: true,
+            z: 22
+        },
+        xAxis: [{
+            type: 'value',
+            gridIndex: 0,
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: "#60697d",
+                }
+            }, //网格线
+            axisTick: {
+                alignWithLabel: false
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#b3b5c4'
+                }
+            },
+            axisTick: {
+                show: false
+            },
+            axisLabel: {
+                interval: 0,
+                rotate: 30,
+                show: true,
+                color: '#b3b5c4',
+                fontSize: 12
+            }
+        }],
+        yAxis: [{
+            type: 'category',
+            gridIndex: 0,
+            data: ["aa","vv","dd","ee","eew","ty","cc"],
+            splitLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+
+            axisLine: {
+                lineStyle: {
+                    color: '#b3b5c4'
+                }
+            },
+            axisLabel: {
+                color: '#b3b5c4',
+                // formatter: 'value'
+            }
+        }, ],
+        series: [{
+            name: '人数',
+            type: 'bar',
+            barWidth: '60%',
+            xAxisIndex: 0,
+            yAxisIndex: 0,
+            itemStyle: {
+                normal: {
+                    barBorderRadius: 30,
+                    color: new echarts.graphic.LinearGradient(
+                        0, 0, 1, 0, [{
+                                offset: 0,
+                                color: 'rgba(36,226,198,0.2)'
+                            },
+                            {
+                                offset: 0.5,
+                                color: 'rgba(36,226,198,0.7)'
+                            }, {
+                                offset: 1,
+                                color: 'rgba(36,226,198,1)'
+                            }
+                        ]
+                    )
+                }
+            },
+            data: [44,55,66,77,33,224,55],
+            zlevel: 11
+
+        }, ]
+    };
+    myChart.setOption(option);
+    </script>
+</body>
+
+</html>
